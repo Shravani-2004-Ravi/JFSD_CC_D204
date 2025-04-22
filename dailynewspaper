@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side by Side Paragraphs</title>
+    <style>
+        .container {
+            display: flex; /* Enables flexbox */
+            justify-content: start; /* Spaces out the boxes */
+        }
+        .box {
+            border: 2px solid black;
+            padding: 1px;
+            width: 40%; /* Adjust width to fit two boxes */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Daily Newspaper
+</h1>
+    <div class="container">
+        <div class="box">
+            <p> This article is about the online encyclopedia. For Wikipedia's home page, see Main Page.
+                For the primary English-language Wikipedia,see English Wikipedia. For other uses,
+                 see Wikipedia (disambiguation).</p>
+        </div>
+        <div class="box">
+            <p> This article is about the online encyclopedia. For Wikipedia's home page, see Main Page.
+                For the primary English-language Wikipedia,see English Wikipedia. For other uses,
+                 see Wikipedia (disambiguation).</p>
+        </div>
+    </div>
+
+</body>
+</html>

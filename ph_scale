@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive pH Scale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .ph-scale-container {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        .ph-scale {
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to right, red, yellow, green, cyan, blue);
+            border-radius: 5px;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .ph-marker {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ph-slider {
+            width: 100%;
+            height: 20px;
+            background: transparent;
+            -webkit-appearance: none;
+            appearance: none;
+            border-radius: 10px;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        .ph-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: white;
+            cursor: pointer;
+            box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+
+        .ph-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin-top: 20px;
+        }
+
+        .ph-description {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .ph-value-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .ph-range {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive pH Scale</h1>
+    
+    <div class="ph-scale-container">
+        <div class="ph-scale">
+            <span id="ph-marker" class="ph-marker" style="left: 50%;">7</span>
+        </div>
+
+        <input type="range" min="0" max="14" value="7" class="ph-slider" id="ph-slider">
+        
+        <div class="ph-value-container">
+            <div class="ph-range">0</div>
+            <div class="ph-range">14</div>
+        </div>
+        
+        <div class="ph-value" id="ph-value">7</div>
+        <div class="ph-description" id="ph-description">Neutral - Pure water has a pH of 7.</div>
+    </div>
+
+    <script>
+        const slider = document.getElementById("ph-slider");
+        const phValue = document.getElementById("ph-value");
+        const phDescription = document.getElementById("ph-description");
+        const phMarker = document.getElementById("ph-marker");
+
+        slider.addEventListener("input", updatePH);
+
+        function updatePH() {
+            const value = slider.value;
+            phValue.textContent = value;
+
+            // Update pH scale marker position
+            phMarker.style.left = `${(value / 14) * 100}%`;
+
+            // Change description based on pH value
+            if (value < 7) {
+                phDescription.textContent = "Acidic - Strong acids like hydrochloric acid have a pH close to 0.";
+                phMarker.style.color = "red";
+            } else if (value > 7) {
+                phDescription.textContent = "Alkaline - Sodium hydroxide solution has a pH above 7.";
+                phMarker.style.color = "blue";
+            } else {
+                phDescription.textContent = "Neutral - Pure water has a pH of 7.";
+                phMarker.style.color = "green";
+            }
+        }
+
+        // Initialize the page with default values
+        updatePH();
+    </script>
+</body>
+</html>
